@@ -1,12 +1,13 @@
 import './card.scss';
 import React, { Component } from 'react';
 
+
 export default class Card extends Component {
     render() {
-        let { image } = this.props;
+        let { image, even } = this.props;
 
         return (
-            <div className="card">
+            <div className='card' }>
                 <div className="card-inset">
                     <img className='image' src={ image } />
                 </div>

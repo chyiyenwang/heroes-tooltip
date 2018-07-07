@@ -1,14 +1,16 @@
 import './index.scss';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import CardList from './components/card/cardList';
+import Grid from './components/grid/grid';
 
 
 class App extends Component {
     constructor( props ) {
         super( props );
 
-        this.state = { heroes: [] }
+        this.state = { 
+            sortedHeroes: []
+        };
     }
 
     componentDidMount() {
@@ -17,13 +19,13 @@ class App extends Component {
         this._asyncRequest = fetch( url )
             .then( response => {                
                 this._asyncRequest = null;
-
+                
                 return response.json();
             })
             .then( heroes => {
-                const removedDupes = this.removeDuplicateHeroes( heroes );
+                const sortedHeroes =  this.filterHeroes( heroes );
 
-                this.setState({ heroes: removedDupes })
+                this.setState({ sortedHeroes });
             });
     }
 
@@ -34,24 +36,32 @@ class App extends Component {
     }
 
     render() {
-        let { heroes } = this.state;
+        let { sortedHeroes } = this.state;
 
-        return (
-            <div className='grid'>
-                <CardList heroes={ heroes } />
-            </div>
-        )
+        return <Grid heroes={ sortedHeroes } />
     }
 
-    removeDuplicateHeroes( heroes ) {
+    filterHeroes( heroes ) {
         const registeredHeroes = {};
+        const sortedHeroNames  = [];
 
-        return heroes.filter( hero => {
+        // Check to see if a hero has been registered so we can make sure there are
+        // no duplicate heroes. After we register the hero we will push that hero to 
+        // their respective row. When both rows are full we'll push them to the state
+        // and then reset the row counts.
+        heroes.forEach( hero => {
             if ( !registeredHeroes[ hero.name ] ) {
-                registeredHeroes[ hero.name ] = true;
-                return hero;
+                registeredHeroes[ hero.name ] = hero;
             }
         });
+
+        Object.keys( registeredHeroes ).forEach( heroName => {
+            sortedHeroNames.push( heroName );
+        })
+
+        return sortedHeroNames.sort().map( hero => {
+            return registeredHeroes[ hero ]
+        })
     }
 }
 

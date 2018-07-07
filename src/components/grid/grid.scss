@@ -5,7 +5,16 @@
     flex-wrap: wrap;
     justify-content: center;
 
-    background-color: #403f6c;
-
     width: 1080px;
+
+    background-color: #403f6c;
+    
+    .row {
+        display: flex;
+        margin-top: -24px;
+    }
+
+    > div:first-of-type {
+        margin-top: 0px;
+    }
 }
