@@ -16,7 +16,7 @@ export default class Grid extends Component {
         let { heroes } = this.props;
 
         if ( heroes.length >= 0 && prevProps.heroes.length === 0 ) {
-            this.groupHeroes( heroes )
+            this.groupHeroesByRows( heroes )
         };
     }
 
@@ -34,7 +34,7 @@ export default class Grid extends Component {
         );
     }
 
-    groupHeroes( sortedHeroes ) {
+    groupHeroesByRows( sortedHeroes ) {
         let allRows = [];
         let evenRow = [];
         let oddRow  = [];
