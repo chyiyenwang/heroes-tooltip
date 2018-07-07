@@ -7,7 +7,7 @@ export default class Card extends Component {
         let { image, even } = this.props;
 
         return (
-            <div className='card' }>
+            <div className='card'>
                 <div className="card-inset">
                     <img className='image' src={ image } />
                 </div>

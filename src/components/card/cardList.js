@@ -4,7 +4,7 @@ import Card from './card';
 
 const CardList = ( props ) => {
     let { heroes } = props;
-    
+
     if ( heroes.length > 0 ) {
         return heroes.map( ( hero, idx ) => {
             return (

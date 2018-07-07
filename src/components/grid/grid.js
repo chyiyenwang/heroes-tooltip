@@ -1,6 +1,7 @@
 import './grid.scss';
 import React, { Component } from 'react';
 import CardList from '../card/cardList';
+import GridRows from '../grid/gridRows';
 
 export default class Grid extends Component {
     constructor( props ) {
@@ -24,7 +25,11 @@ export default class Grid extends Component {
 
         return (
             <div className='grid' ref='grid'>
-                { this.renderRows() }
+                <GridRows
+                    data={ gridRows }
+                    renderRow={ currentRow => (
+                        <CardList heroes={ currentRow } />
+                    )} />
             </div>
         );
     }
@@ -51,19 +56,5 @@ export default class Grid extends Component {
         });
 
         this.setState({ gridRows: allRows });
-    }
-
-    renderRows() {
-        let { gridRows } = this.state;
-
-        return gridRows.map( ( row, idx ) => {
-            return (
-                <div
-                    key={ idx } 
-                    className={ idx % 2 === 0 ? 'row' : 'row' } >
-                    <CardList heroes={ row } />
-                </div>
-            )
-        })
     }
 };

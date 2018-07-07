@@ -9,6 +9,7 @@ class App extends Component {
         super( props );
 
         this.state = { 
+            selectedHero: null,
             sortedHeroes: []
         };
     }
@@ -24,7 +25,6 @@ class App extends Component {
             })
             .then( heroes => {
                 const sortedHeroes =  this.filterHeroes( heroes );
-
                 this.setState({ sortedHeroes });
             });
     }
