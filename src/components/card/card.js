@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 export default class Card extends Component {
     render() {
-        let { image, even } = this.props;
+        const { image } = this.props;
 
         return (
             <div className='card'>

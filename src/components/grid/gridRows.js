@@ -1,23 +1,21 @@
-
 import React from 'react';
+import CardList from '../card/cardList';
 
 
-const GridRows = props => {
-    let { data, renderRow } = props;
-    
-    if ( data.length > 0 ) {
+const GridRows = (props) => {
+    const { data } = props;
+
+    if (data.length > 0) {
         return data.map( ( currentRow, idx ) => {
             return (
                 <div
                     key={ idx }
                     className='grid-row'>
-
-                    { renderRow( currentRow ) }
-                    
+                    <CardList heroes={ currentRow } />
                 </div>
-            )
+            );
 
-        })
+        });
     }
 
     return null;

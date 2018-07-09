@@ -25,6 +25,7 @@ class App extends Component {
             })
             .then( heroes => {
                 const sortedHeroes =  this.filterHeroes( heroes );
+
                 this.setState({ sortedHeroes });
             });
     }
@@ -36,7 +37,7 @@ class App extends Component {
     }
 
     render() {
-        let { sortedHeroes } = this.state;
+        const { sortedHeroes } = this.state;
 
         return <Grid heroes={ sortedHeroes } />
     }
@@ -52,16 +53,13 @@ class App extends Component {
         heroes.forEach( hero => {
             if ( !registeredHeroes[ hero.name ] ) {
                 registeredHeroes[ hero.name ] = hero;
-            }
+                sortedHeroNames.push( hero.name );
+            };
         });
-
-        Object.keys( registeredHeroes ).forEach( heroName => {
-            sortedHeroNames.push( heroName );
-        })
 
         return sortedHeroNames.sort().map( hero => {
             return registeredHeroes[ hero ]
-        })
+        });
     }
 }
 
