@@ -20,7 +20,7 @@ type State = {
 
 const mapStateToProps = state => {
     return {
-        sortedHeroes: state.heroes.sorted
+        heroes: state.heroes
     }
 }
 
@@ -41,16 +41,17 @@ class App extends Component {
     }
 
     renderActiveHero() {
-        const { sortedHeroes } = this.props;
+        const { heroes } = this.props;
         
-        if ( sortedHeroes.length > 0 ) {
-            const initialHero = sortedHeroes[ 0 ];
+        if ( heroes.sorted.length > 0 ) {
+            const initialHero = heroes.sorted[ 0 ];
+            const activeHero = heroes.activeHero && heroes.activeHero.name ? heroes.activeHero : initialHero;
 
             return (
                 <Card
                     isClickable
                     type='activeHero'
-                    hero={ initialHero } />
+                    hero={ activeHero } />
             )
         };
 
@@ -59,11 +60,11 @@ class App extends Component {
 
     renderGrid() {
         const { 
-            sortedHeroes
+            heroes
         } = this.props;
 
         return (
-            <Grid heroes={ sortedHeroes } />
+            <Grid heroes={ heroes.sorted } />
         )
     }
 };

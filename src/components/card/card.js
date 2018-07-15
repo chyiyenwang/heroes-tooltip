@@ -19,14 +19,6 @@ type State = {
 
 
 class Card extends Component<Props, State> {
-    // constructor( props ) {
-    //     super( props );
-
-    //     this.state = {
-    //         activeHero: null
-    //     };
-    // }
-
     render() {
         // let { activeHero } = this.state;
         const { hero } = this.props;
@@ -47,13 +39,18 @@ class Card extends Component<Props, State> {
     }
 
     handleClick() {
-        const { type, hero, isClickable } = this.props;
+        const { 
+            isClickable, 
+            type, 
+            hero 
+        } = this.props;
 
         if ( type === 'activeHero' && isClickable ) {
             this.props.toggleGrid();
         }
         else if ( isClickable ) {
             this.props.registerActiveHero( hero );
+            this.props.toggleGrid();
         }
     }
 }

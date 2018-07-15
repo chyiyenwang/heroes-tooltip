@@ -8,7 +8,9 @@
     width: 1080px;
     margin: auto;
 
-    // background-color: #403f6c;
+    &-invisible {
+        visibility: hidden;
+    }
     
     &-row {
         display: flex;

@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     return {
         grid: state.grid
     }
-}
+};
 
 
 class Grid extends Component {
@@ -34,11 +34,9 @@ class Grid extends Component {
         const { gridRows } = this.state;
         const { grid } = this.props;
 
-        const isVisible = grid.isOpen ? <GridRows data={ gridRows }/> : null;
-
         return (
-            <div className='grid' ref='grid'>
-                { isVisible }
+            <div className={ grid.isOpen ? 'grid' : 'grid grid-invisible' }>
+                <GridRows data={ gridRows } />
             </div>
         );
     }
