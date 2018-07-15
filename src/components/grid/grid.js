@@ -1,10 +1,19 @@
 import './grid.scss';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import CardList from '../card/cardList';
 import GridRows from '../grid/gridRows';
 
 
-export default class Grid extends Component {
+const mapStateToProps = state => {
+    return {
+        grid: state.grid
+    }
+}
+
+
+class Grid extends Component {
     constructor( props ) {
         super( props );
 
@@ -23,10 +32,13 @@ export default class Grid extends Component {
 
     render() {
         const { gridRows } = this.state;
+        const { grid } = this.props;
+
+        const isVisible = grid.isOpen ? <GridRows data={ gridRows }/> : null;
 
         return (
             <div className='grid' ref='grid'>
-                <GridRows data={ gridRows }/>
+                { isVisible }
             </div>
         );
     }
@@ -71,3 +83,5 @@ export default class Grid extends Component {
         this.setState({ gridRows: allRows });
     }
 };
+
+export default connect( mapStateToProps )( Grid );

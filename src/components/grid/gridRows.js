@@ -11,7 +11,11 @@ const GridRows = (props) => {
                 <div
                     key={ idx }
                     className='grid-row'>
-                    <CardList heroes={ currentRow } />
+
+                    <CardList 
+                        isClickable
+                        heroes={ currentRow } />
+
                 </div>
             );
 

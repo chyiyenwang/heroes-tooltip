@@ -6,11 +6,13 @@
     justify-content: center;
 
     width: 1080px;
+    margin: auto;
 
-    background-color: #403f6c;
+    // background-color: #403f6c;
     
     &-row {
         display: flex;
+
         margin-top: -24px;
     }
 

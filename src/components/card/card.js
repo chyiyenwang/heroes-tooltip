@@ -1,17 +1,61 @@
+// @flow
+
 import './card.scss';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { registerActiveHero, toggleGrid } from '../../actions/index';
 
 
-export default class Card extends Component {
+type Props = {
+    type : 'hero' | 'activeHero' | 'talent',
+    image: string
+};
+
+type State = {
+    activeHero: ?string
+};
+
+
+
+
+class Card extends Component<Props, State> {
+    // constructor( props ) {
+    //     super( props );
+
+    //     this.state = {
+    //         activeHero: null
+    //     };
+    // }
+
     render() {
-        const { image } = this.props;
+        // let { activeHero } = this.state;
+        const { hero } = this.props;
 
         return (
             <div className='card'>
                 <div className="card-inset">
-                    <img className='image' src={ image } />
+                    <img 
+                        className='image' 
+                        src={ hero.icon_url[ '92x93' ] } 
+                        onClick={ () => {
+                            this.handleClick();
+                        }}
+                    />
                 </div>
             </div>
         )
     }
+
+    handleClick() {
+        const { type, hero, isClickable } = this.props;
+
+        if ( type === 'activeHero' && isClickable ) {
+            this.props.toggleGrid();
+        }
+        else if ( isClickable ) {
+            this.props.registerActiveHero( hero );
+        }
+    }
 }
+
+export default connect( null, { registerActiveHero, toggleGrid } )( Card );

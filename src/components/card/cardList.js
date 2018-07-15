@@ -1,18 +1,29 @@
+// @flow
+
 import React from 'react';
 import Card from './card';
 
 
-const CardList = ( props ) => {
-    const { heroes } = props;
+type Props = {
+    type  : 'hero' | 'talent',
+    heroes: Array<Object>
+};
+
+
+const CardList = ( props: Props ) => {
+    const { isClickable, heroes } = props;
 
     if ( heroes.length > 0 ) {
-        return heroes.map( ( hero, idx ) => {
+        const cards: Array<Object> = heroes.map( ( hero: Object, idx: number ) => {
             return (
                 <Card
                     key={ idx }
-                    image={ hero.icon_url[ '92x93' ] } />
+                    isClickable
+                    hero={ hero } />
             );
         });
+
+        return cards;
     };
 };
 
