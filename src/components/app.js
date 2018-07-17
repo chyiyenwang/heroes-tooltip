@@ -1,4 +1,4 @@
-
+// @flow
 import './app.scss';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -7,6 +7,8 @@ import { fetchHeroes, toggleGrid } from '../actions/index';
 
 import Grid from './grid/grid';
 import Card from './card/card';
+import HeroCardList from './card/heroCardList';
+import AbilityCardList from './card/abilityCardList';
 
 
 type Props = {}
@@ -35,7 +37,15 @@ class App extends Component {
             <div className='overlay'>
                 { this.renderGrid() }
 
-                { this.renderActiveHero() }
+                <div className='footer'>
+                    <div className='active-hero'>
+                        { this.renderActiveHero() }
+                    </div>
+
+                    <div className='abilities'>
+                        { this.renderAbilities() }
+                    </div>
+                </div>
             </div>
         )
     }
@@ -45,7 +55,7 @@ class App extends Component {
         
         if ( heroes.sorted.length > 0 ) {
             const initialHero = heroes.sorted[ 0 ];
-            const activeHero = heroes.activeHero && heroes.activeHero.name ? heroes.activeHero : initialHero;
+            const activeHero = heroes.active && heroes.active.name ? heroes.active : initialHero;
 
             return (
                 <Card
@@ -54,6 +64,30 @@ class App extends Component {
                     hero={ activeHero } />
             )
         };
+
+        return null;
+    }
+
+    renderAbilities() {
+        const { heroes } = this.props;
+
+        if ( heroes.sorted.length > 0 ) {
+
+            const initialHero = heroes.sorted[ 0 ];
+            const activeHero = heroes.active && heroes.active.name ? heroes.active : initialHero;
+
+            return (
+                <AbilityCardList
+                    type='ability'
+                    hero={ activeHero }/>
+            )
+
+            // return (
+            //     <Card
+            //         type='ability'
+            //         hero={ activeHero }/>
+            // )
+        }
 
         return null;
     }

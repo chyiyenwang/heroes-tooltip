@@ -2,7 +2,7 @@ import { FETCH_HEROES, REGISTER_ACTIVE_HERO } from '../actions/index';
 
 const INITIAL_STATE = {
     sorted: [],
-    activeHero: {}
+    active: {}
 }
 
 const heroesReducer = ( state = INITIAL_STATE, action ) => {
@@ -36,7 +36,7 @@ const heroesReducer = ( state = INITIAL_STATE, action ) => {
         case REGISTER_ACTIVE_HERO: {
             return {
                 ...state,
-                activeHero: action.payload
+                active: action.payload
             }
         }
 

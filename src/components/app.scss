@@ -1,3 +1,13 @@
 .overlay {
     background-color: #403f6c;
-}
+
+    .footer {
+        display              : grid;
+        grid-template-columns: auto auto auto;
+
+        .abilities {
+            display: inline-flex;
+            justify-content: center;
+        };
+    };
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import CardList from '../card/cardList';
+import HeroCardList from '../card/heroCardList';
 
 
 const GridRows = (props) => {
@@ -12,7 +12,7 @@ const GridRows = (props) => {
                     key={ idx }
                     className='grid-row'>
 
-                    <CardList 
+                    <HeroCardList 
                         isClickable
                         heroes={ currentRow } />
 

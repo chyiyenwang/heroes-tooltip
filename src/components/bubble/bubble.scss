@@ -1,0 +1,54 @@
+$primary        : #140B3B;
+$primary-variant: #7D79D6;
+$white          : #E1EFFC;
+
+@mixin triangle( $color, $zIndex, $border, $borderTop ) {
+    position    : absolute;
+    z-index     : $zIndex;
+    right       : 0;
+    left        : 0;
+
+    width       : 0;
+    margin-right: auto;
+    margin-left : auto;
+
+    border      : $border solid transparent;
+    border-top  : $borderTop solid $color;
+};
+
+.bubble {
+    position        : relative;
+
+    width           : 400px;
+    margin-bottom   : 30px;
+    padding-right   : 10px;
+    padding-left    : 10px;
+
+    border          : 3px solid $primary-variant;
+    background-color: $primary;
+
+    &-container {
+        width : auto;
+        height: auto;
+    };
+
+    &-triangle {
+        @include triangle( $primary, 20, 14px, 24px );
+
+        &-border {
+            @include triangle( $primary-variant, 10, 18px, 32px );    
+        };
+    };
+
+    h4 {
+        color      : $white;
+
+        font-family: Verdana;
+    };
+
+    p {
+        color      : $primary-variant;
+
+        font-family: Trebuchet MS;
+    };
+};
