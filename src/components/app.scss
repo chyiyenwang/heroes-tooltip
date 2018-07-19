@@ -1,13 +1,49 @@
-.overlay {
-    background-color: #403f6c;
+#heroes-tooltip-root {
+    position: absolute;
 
-    .footer {
-        display              : grid;
-        grid-template-columns: auto auto auto;
+    width: 90%;
+    height: 100%;
+};
 
-        .abilities {
-            display: inline-flex;
+.react-tiny-popover-container {
+    z-index: 10000000000 !important;
+}
+
+.HTT__overlay {
+    display       : flex;
+    flex-direction: column;
+
+    height: 100%;
+
+    .HTT__footer {
+        z-index: 10;
+
+        display: grid;
+        flex   : 17;
+
+        grid-template-columns: 13.3% auto;
+
+        .HTT__active-hero {
+            display        : flex;
+            align-items    : center;
             justify-content: center;
+
+            cursor         : pointer;
+
+            opacity        : 0;
+
+            .HTT__card {
+                width : 83%;
+                height: 83%;
+            }
+        }
+
+        .HTT__abilities {
+            display        : inline-flex;
+            align-items    : flex-end;
+            justify-content: center;
+
+            margin-left    : -2.5%;
         };
     };
 };

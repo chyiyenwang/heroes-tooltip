@@ -1,32 +1,42 @@
-.card {
+.HTT__card {
     position       : relative;
 
     display        : flex;
     align-content  : center;
     justify-content: center;
 
-    width          : 92px;
-    height         : 93px;
-    margin         : 3px;
+    width          : 78px;
+    height         : 82px;
+    margin         : 3px !important;
 
-    background     : white;
+    background     : transparent;
 
     &-inset {
         width : 100%;
-        margin: 4px;
+        margin: 1px !important;
     };
 };
 
-.card,
-.card-inset {
+.HTT__card,
+.HTT__card-inset {
     clip-path: polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
 };
 
-.image {
+.HTT__image {
     width : 100%;
     height: 100%;
 
+    &-active-hero {
+        background: white;
+    };
+
+    &-ability {
+        cursor: help;
+    };
+
     &-clickable {
+        background: white;
+
         &:hover {
             cursor: pointer;
         };

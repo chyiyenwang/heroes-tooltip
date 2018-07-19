@@ -16,9 +16,17 @@ const store = createStoreWithMiddleware(
 );
 
 
-ReactDOM.render(
-    <Provider store={ store }>
-      <App />
-    </Provider>
-    , document.getElementById( 'app' )
-);
+setTimeout(() => {
+  const videoPlayer = document.getElementsByClassName( 'video-player__container' )[ 0 ];
+  const app = document.createElement( 'div' );
+  app.id = 'heroes-tooltip-root';
+  
+  if ( videoPlayer ) videoPlayer.prepend( app );
+  
+  ReactDOM.render(
+      <Provider store={ store }>
+        <App />
+      </Provider>
+      , document.getElementById( 'heroes-tooltip-root' )
+  );
+}, 5000 );

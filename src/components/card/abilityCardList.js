@@ -7,13 +7,12 @@ import type { HeroType, AbilityType } from '../../types';
 
 
 type Props = {
-    type        : 'ability',
-    hero        : HeroType
+    hero: HeroType
 };
 
 
 const AbilityCardList = ( props: Props ) => {
-    const { hero, type } = props;
+    const { hero } = props;
 
     if ( hero ) {
         const abilityCards = [];
@@ -27,16 +26,7 @@ const AbilityCardList = ( props: Props ) => {
                     hero={ hero }
                 />
             )
-        }
-        // const abilityCards = hero.abilities.map( ( ability: AbilityType, idx: number ) => {
-        //     return (
-        //         <Card
-        //             key={ idx }
-        //             number={ idx }
-        //             type='ability'
-        //             hero={ hero } />
-        //     )
-        // })
+        };
 
         return abilityCards;
     };

@@ -34,15 +34,15 @@ class App extends Component {
 
     render() {
         return (
-            <div className='overlay'>
+            <div className='HTT__overlay'>
                 { this.renderGrid() }
 
-                <div className='footer'>
-                    <div className='active-hero'>
+                <div className='HTT__footer'>
+                    <div className='HTT__active-hero'>
                         { this.renderActiveHero() }
                     </div>
 
-                    <div className='abilities'>
+                    <div className='HTT__abilities'>
                         { this.renderAbilities() }
                     </div>
                 </div>
@@ -76,17 +76,7 @@ class App extends Component {
             const initialHero = heroes.sorted[ 0 ];
             const activeHero = heroes.active && heroes.active.name ? heroes.active : initialHero;
 
-            return (
-                <AbilityCardList
-                    type='ability'
-                    hero={ activeHero }/>
-            )
-
-            // return (
-            //     <Card
-            //         type='ability'
-            //         hero={ activeHero }/>
-            // )
+            return <AbilityCardList hero={ activeHero }/>
         }
 
         return null;

@@ -2,10 +2,11 @@ $primary        : #140B3B;
 $primary-variant: #7D79D6;
 $white          : #E1EFFC;
 
-@mixin triangle( $color, $zIndex, $border, $borderTop ) {
+@mixin triangle( $color, $zIndex, $bottom, $border, $borderTop ) {
     position    : absolute;
     z-index     : $zIndex;
     right       : 0;
+    bottom      : $bottom;
     left        : 0;
 
     width       : 0;
@@ -16,13 +17,13 @@ $white          : #E1EFFC;
     border-top  : $borderTop solid $color;
 };
 
-.bubble {
+.HTT__bubble {
     position        : relative;
+    z-index: 10;
 
     width           : 400px;
     margin-bottom   : 30px;
-    padding-right   : 10px;
-    padding-left    : 10px;
+    padding: 10px;
 
     border          : 3px solid $primary-variant;
     background-color: $primary;
@@ -33,22 +34,25 @@ $white          : #E1EFFC;
     };
 
     &-triangle {
-        @include triangle( $primary, 20, 14px, 24px );
+        @include triangle( $primary, 30, -38px, 14px, 24px );
 
         &-border {
-            @include triangle( $primary-variant, 10, 18px, 32px );    
+            @include triangle( $primary-variant, 20, -50px, 18px, 32px );    
         };
     };
 
     h4 {
         color      : $white;
 
-        font-family: Verdana;
+        font-family: Verdana !important;
     };
 
     p {
+        margin-top : 10px;
+
         color      : $primary-variant;
 
-        font-family: Trebuchet MS;
+        font-family: Trebuchet MS !important;
+        font-size  : 14px;
     };
 };

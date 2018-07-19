@@ -8,13 +8,12 @@ import type { HeroType } from '../../types';
 
 type Props = {
     isClickable?: boolean,
-    type        : 'hero',
     heroes      : Array<HeroType>
 };
 
 
 const HeroCardList = ( props: Props ) => {
-    const { isClickable, heroes, type } = props;
+    const { isClickable, heroes } = props;
 
     if ( heroes.length > 0 ) {
         const cards: Array<Object> = heroes.map( ( hero: HeroType, idx: number ) => {
@@ -22,6 +21,7 @@ const HeroCardList = ( props: Props ) => {
                 <Card
                     key={ idx }
                     isClickable
+                    type='hero'
                     hero={ hero } />
             );
         });

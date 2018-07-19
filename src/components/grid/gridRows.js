@@ -10,7 +10,7 @@ const GridRows = (props) => {
             return (
                 <div
                     key={ idx }
-                    className='grid-row'>
+                    className='HTT__grid-row'>
 
                     <HeroCardList 
                         isClickable

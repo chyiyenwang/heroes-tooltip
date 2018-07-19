@@ -1,21 +1,24 @@
-.grid {
-    display: flex;
-    align-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+.HTT__grid {
+    z-index        : 10;
+
+    display        : flex;
+    align-content  : center;
+    flex           : 78;
+    flex-direction : row;
+    flex-wrap      : wrap;
     justify-content: center;
 
-    width: 1080px;
-    margin: auto;
+    margin-right   : 5% !important;
+    margin-left    :  15% !important;
 
     &-invisible {
         visibility: hidden;
     }
     
     &-row {
-        display: flex;
+        display   : flex;
 
-        margin-top: -24px;
+        margin-top: -20px !important;
     }
 
     > div:first-of-type {

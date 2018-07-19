@@ -35,8 +35,8 @@ class Card extends Component<Props, State> {
 
     render() {
         return (
-            <div className='card'>
-                <div className="card-inset">
+            <div className='HTT__card'>
+                <div className="HTT__card-inset">
                     { this.renderImage() }
                 </div>
             </div>
@@ -47,19 +47,19 @@ class Card extends Component<Props, State> {
         let { isPopoverOpen } = this.state;
         const { hero, type, abilityNum } = this.props;
         
+        // the Prop 'type' will determine which card image to display
         if ( type === 'ability' ) {
             return (
                 <Popover
                     isOpen={ isPopoverOpen }
-                    position={'top'} // preferred position
+                    position={ 'top' }
                     padding={ 40 }
                     content={(
-                        <Bubble
-                            ability={ hero.abilities[ abilityNum ] }/>
+                        <Bubble ability={ hero.abilities[ abilityNum ] }/>
                     )}
                 >
                     <div
-                        className='image'
+                        className='HTT__image HTT__image-ability'
                         onMouseEnter={() => this.setState({ isPopoverOpen: true })}
                         onMouseLeave={ () => this.setState({ isPopoverOpen: false })} 
                         // onClick={ () => this.setState({ isPopoverOpen: !this.state.isPopoverOpen })}
@@ -68,10 +68,9 @@ class Card extends Component<Props, State> {
             )
         }
 
-
         return (
             <img 
-                className='image image-clickable' 
+                className={ type === 'activeHero' ? 'HTT__image HTT__image-active-hero' : 'HTT__image HTT__image-clickable' }
                 src={ hero.icon_url ? hero.icon_url[ '92x93' ] : '' } 
                 onClick={ () => {
                     this.handleClick();

@@ -1,0 +1,15 @@
+{
+    "name": "Heroes Tooltip",
+    "version": "1.0",
+    "description": "Heroes of the Storm tooltip for Twitch",
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "content_scripts": [{
+        "matches": [ "https://www.twitch.tv/*" ],
+        "js": [ "bundle.js" ],
+        "run_at": "document_end"
+    }],
+    "manifest_version": 2
+}
