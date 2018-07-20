@@ -1,8 +1,24 @@
 .HTT__grid {
+    &-container {
+        height: 100%;
+        z-index: 10;
+        display: flex;
+        width: 112%;
+    };
+
+    &-background {
+        background-color: #140B3B;
+        flex: 78;
+        z-index: 9;
+        width: 100%;
+        opacity: 0.4;
+    };
+
+    position       : absolute;
     z-index        : 10;
 
     display        : flex;
-    align-content  : center;
+    align-self  : center;
     flex           : 78;
     flex-direction : row;
     flex-wrap      : wrap;

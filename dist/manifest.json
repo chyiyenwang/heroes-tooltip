@@ -3,6 +3,9 @@
     "version": "1.0",
     "description": "Heroes of the Storm tooltip for Twitch",
     "permissions": [
+        "https://www.twitch.tv/*",
+        "https://hotsapi.net/api/v1/heroes",
+        "http://s3.hotsapi.net/img/heroes/*",
         "storage",
         "activeTab"
     ],

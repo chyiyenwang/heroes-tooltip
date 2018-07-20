@@ -35,8 +35,11 @@ class Grid extends Component {
         const { grid } = this.props;
 
         return (
-            <div className={ grid.isOpen ? 'HTT__grid' : 'HTT__grid HTT__grid-invisible' }>
-                <GridRows data={ gridRows } />
+            <div className={ grid.isOpen ? 'HTT__grid-container' : 'HTT__grid-container HTT__grid-invisible' }>
+                <div className='HTT__grid'>
+                    <GridRows data={ gridRows } />
+                </div>
+                <div className='HTT__grid-background'/>
             </div>
         );
     }

@@ -30,3 +30,10 @@ setTimeout(() => {
       , document.getElementById( 'heroes-tooltip-root' )
   );
 }, 5000 );
+
+// ReactDOM.render(
+//     <Provider store={ store }>
+//       <App />
+//     </Provider>
+//     , document.getElementById( 'heroes-tooltip-root' )
+// );
