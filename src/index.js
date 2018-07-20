@@ -8,7 +8,7 @@ import promise from 'redux-promise';
 import App from './components/app';
 import reducers from './reducers/reducers';
 
-
+let videoPlayer;
 const createStoreWithMiddleware = applyMiddleware( reduxThunk, promise )( createStore );
 const store = createStoreWithMiddleware( 
   reducers, 
@@ -16,24 +16,24 @@ const store = createStoreWithMiddleware(
 );
 
 
-setTimeout(() => {
-  const videoPlayer = document.getElementsByClassName( 'video-player__container' )[ 0 ];
-  const app = document.createElement( 'div' );
-  app.id = 'heroes-tooltip-root';
-  
-  if ( videoPlayer ) videoPlayer.prepend( app );
-  
-  ReactDOM.render(
-      <Provider store={ store }>
-        <App />
-      </Provider>
-      , document.getElementById( 'heroes-tooltip-root' )
-  );
-}, 5000 );
+// Wait until we detect the Twitch videoplayer. Once we find it on the DOM we'll then
+// attach our app as an overlay
+const initiateVideoPlayer = setInterval( () => {
+  videoPlayer = document.getElementsByClassName( 'video-player__container' )[ 0 ];
 
-// ReactDOM.render(
-//     <Provider store={ store }>
-//       <App />
-//     </Provider>
-//     , document.getElementById( 'heroes-tooltip-root' )
-// );
+  if ( videoPlayer ) {
+    const app = document.createElement( 'div' );
+    app.id = 'heroes-tooltip-root';
+    
+    videoPlayer.prepend( app );
+    
+    ReactDOM.render(
+        <Provider store={ store }>
+          <App />
+        </Provider>
+        , document.getElementById( 'heroes-tooltip-root' )
+    );
+
+    clearInterval( initiateVideoPlayer );
+  }
+}, 10000 );
