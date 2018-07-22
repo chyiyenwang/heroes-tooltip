@@ -1,7 +1,7 @@
 #heroes-tooltip-root {
     position: absolute;
 
-    width: 90%;
+    width: 100%;
     height: 97%;
 };
 
@@ -16,13 +16,11 @@
     height: 100%;
 
     .HTT__footer {
-        z-index: 10;
-
         display: grid;
         flex   : 17;
-        margin-left: 2%;
+        margin-left: 1%;
 
-        grid-template-columns: 10% auto;
+        grid-template-columns: 10% auto 10%;
 
         .HTT__active-hero {
             display        : flex;
@@ -30,6 +28,7 @@
             justify-content: center;
 
             cursor         : pointer;
+            z-index: 10;
 
             // prod = 0;
             opacity        : 0;
@@ -45,9 +44,9 @@
             align-items    : flex-end;
             justify-content: center;
 
-            margin-bottom: .4%;
-            margin-left    : -0.8%;
+            margin-left    : -1.25%;
             height: 117%;
+            z-index: 10;
 
             opacity        : 0;
         };
