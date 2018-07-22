@@ -15,6 +15,7 @@ type Props = {
     isClickable       : boolean,
     type              : 'hero' | 'activeHero' | 'ability',
     hero              : HeroType,
+    abilityNum        : number,
     toggleGrid        : Function,
     registerActiveHero: Function
 };
@@ -34,6 +35,12 @@ class Card extends Component<Props, State> {
     }
 
     render() {
+        const { hero } = this.props;
+
+        if ( hero.icon_url[ '92x93' ] === 'hidden' ) {
+            return <div className='HTT__card HTT__card-hidden' />
+        }
+
         return (
             <div className='HTT__card'>
                 <div className="HTT__card-inset">
@@ -72,6 +79,9 @@ class Card extends Component<Props, State> {
             <img 
                 className={ type === 'activeHero' ? 'HTT__image HTT__image-active-hero' : 'HTT__image HTT__image-clickable' }
                 src={ hero.icon_url ? hero.icon_url[ '92x93' ] : '' } 
+                onError={ e => {
+                    this.handleImageError( e, hero );
+                }}
                 onClick={ () => {
                     this.handleClick();
                 }}
@@ -95,6 +105,11 @@ class Card extends Component<Props, State> {
             registerActiveHero( hero );
             toggleGrid();
         }
+    }
+
+    handleImageError( e, hero ) {
+        const heroName = hero.name.toLowerCase().replace( ' ', '-' );
+        e.target.src=`http://www.heroesfire.com/images/wikibase/icon/heroes/${ heroName }.png`;
     }
 }
 

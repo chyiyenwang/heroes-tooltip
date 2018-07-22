@@ -60,7 +60,7 @@ class Grid extends Component {
                 if ( lastRowItem && rowHasOddItems ) {
                     const emptyHero = {
                         icon_url: {
-                            '92x93': null
+                            '92x93': 'hidden'
                         }
                     };
 
