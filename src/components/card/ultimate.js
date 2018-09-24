@@ -27,7 +27,7 @@ class Ultimate extends Component<Props, State> {
         this.state = {
             isUltSelectionOpen: false,
             selectedUlt: null
-        };ß
+        };
     }
 
     render() {
