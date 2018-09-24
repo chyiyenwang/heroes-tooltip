@@ -2,7 +2,6 @@ import './grid.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import HeroCardList from '../card/heroCardList';
 import GridRows from '../grid/gridRows';
 
 

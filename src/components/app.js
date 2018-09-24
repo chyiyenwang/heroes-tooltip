@@ -7,7 +7,6 @@ import { fetchHeroes, toggleGrid } from '../actions/index';
 
 import Grid from './grid/grid';
 import Card from './card/card';
-import HeroCardList from './card/heroCardList';
 import AbilityCardList from './card/abilityCardList';
 
 
@@ -50,6 +49,24 @@ class App extends Component {
         )
     }
 
+    renderUlt() {
+        const { heroes } = this.props;
+
+        if ( heroes.sorted.length > 0 ) {
+            const initialHero = heroes.sorted[ 0 ];
+            const activeHero = heroes.active && heroes.active.name ? heroes.active : initialHero;
+
+            return (
+                <Card
+                    isClickable
+                    type='ult'
+                    hero={ activeHero } />
+            )
+        }
+
+        return null;
+    }
+
     renderActiveHero() {
         const { heroes } = this.props;
         
@@ -76,7 +93,13 @@ class App extends Component {
             const initialHero = heroes.sorted[ 0 ];
             const activeHero = heroes.active && heroes.active.name ? heroes.active : initialHero;
 
-            return <AbilityCardList hero={ activeHero }/>
+            return (
+                <AbilityCardList
+                    hero={ activeHero }
+                    type="primary"
+                    data={ activeHero.abilities }
+                />
+            )
         }
 
         return null;

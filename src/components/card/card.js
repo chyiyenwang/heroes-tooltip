@@ -13,9 +13,9 @@ import type { HeroType } from '../../types';
 
 type Props = {
     isClickable       : boolean,
-    type              : 'hero' | 'activeHero' | 'ability',
+    type              : 'hero' | 'activeHero' | 'ability' | 'ult',
     hero              : HeroType,
-    abilityNum        : number,
+    ability           : Object,
     toggleGrid        : Function,
     registerActiveHero: Function
 };
@@ -30,19 +30,20 @@ class Card extends Component<Props, State> {
         super( props );
 
         this.state = {
-            isPopoverOpen: false
+            isPopoverOpen: false,
+            isUltSelectionOpen: false
         };
     }
 
     render() {
-        const { hero } = this.props;
+        const { hero, type } = this.props;
 
         if ( hero.icon_url[ '92x93' ] === 'hidden' ) {
             return <div className='HTT__card HTT__card-hidden' />
         }
 
         return (
-            <div className='HTT__card'>
+            <div className={ type === 'ult' ? 'HTT__card HTT__card-ult' : 'HTT__card' }>
                 <div className="HTT__card-inset">
                     { this.renderImage() }
                 </div>
@@ -51,25 +52,25 @@ class Card extends Component<Props, State> {
     }
 
     renderImage() {
-        let { isPopoverOpen } = this.state;
-        const { hero, type, abilityNum } = this.props;
+        let { isPopoverOpen, isUltSelectionOpen } = this.state;
+        const { hero, type, ability } = this.props;
         
         // the Prop 'type' will determine which card image to display
-        if ( type === 'ability' ) {
+        if ( type === 'ability' || type === 'ult' ) {
             return (
                 <Popover
                     isOpen={ isPopoverOpen }
                     position={ 'top' }
                     padding={ 40 }
                     content={(
-                        <Bubble ability={ hero.abilities[ abilityNum ] }/>
+                        <Bubble ability={ ability }/>
                     )}
                 >
                     <div
-                        className='HTT__image HTT__image-ability'
-                        onMouseEnter={() => this.setState({ isPopoverOpen: true })}
-                        onMouseLeave={ () => this.setState({ isPopoverOpen: false })} 
-                        // onClick={ () => this.setState({ isPopoverOpen: !this.state.isPopoverOpen })}
+                        className={ type === 'ult' ? 'HTT__image HTT__image-ult' : 'HTT__image HTT__image-ability' }
+                        // onMouseEnter={() => { if ( hero.abilities[ abilityNum ] ) this.setState({ isPopoverOpen: true }) } }
+                        // onMouseLeave={ () => { if ( hero.abilities[ abilityNum ] ) this.setState({ isPopoverOpen: false }) } }
+                        onClick={ () => this.setState({ isPopoverOpen: !this.state.isPopoverOpen })}
                     />
                 </Popover>
             )
@@ -79,11 +80,11 @@ class Card extends Component<Props, State> {
             <img 
                 className={ type === 'activeHero' ? 'HTT__image HTT__image-active-hero' : 'HTT__image HTT__image-clickable' }
                 src={ hero.icon_url ? hero.icon_url[ '92x93' ] : '' } 
-                onError={ e => {
-                    this.handleImageError( e, hero );
-                }}
                 onClick={ () => {
                     this.handleClick();
+                }}
+                onError={ e => {
+                    this.handleImageError( e, hero );
                 }}
             />
         )
@@ -109,7 +110,7 @@ class Card extends Component<Props, State> {
 
     handleImageError( e, hero ) {
         const heroName = hero.name.toLowerCase().replace( ' ', '-' );
-        e.target.src=`http://www.heroesfire.com/images/wikibase/icon/heroes/${ heroName }.png`;
+        e.target.src = `http://www.heroesfire.com/images/wikibase/icon/heroes/${ heroName }.png`;
     }
 }
 

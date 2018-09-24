@@ -38,6 +38,12 @@
         cursor: help;
     };
 
+    &-ult {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     &-clickable {
         background: white;
 
@@ -46,3 +52,40 @@
         };
     };
 };
+
+
+
+.HTT__card-ult-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 5%;
+    height: 45%;
+    margin: 0.25%;
+    position: relative;
+}
+
+.selectable-ults {
+    display: flex;
+    position: absolute;
+    top: -180%;
+    width: 220%;
+    justify-content: center;
+    height: 200%;
+    align-items: flex-end;
+}
+
+.HTT__card-ult {
+    // width: 93px;
+    // height: 92px;
+    width: 50% !important;
+    height: 50% !important;
+    margin: 2% !important;
+}
+
+.HTT__card-ult-selector {
+    // width: 93px;
+    // height: 92px;
+    width: 100% !important;
+    height: 100% !important;
+}
